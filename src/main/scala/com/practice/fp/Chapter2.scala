@@ -48,10 +48,23 @@ object Chapter2 {
     go(0)
   }
 
+  def isSorted[A](arr: Array[A], ordered: (A, A) => Boolean): Boolean = {
+    @tailrec
+    def go(index: Int):Boolean = {
+      if (index == arr.length - 1) true
+      else if (!ordered(arr(index), arr(index + 1))) false
+      else go(index + 1)
+    }
+    go(0)
+  }
+
   def main(args: Array[String]): Unit = {
     println(formatResult("factorial", 5, factorial))
     println(formatResult("fibonacci", 5, fibo))
     println("First index of an even number is %d".format(findFirst[Int](Array(1, 3, 5, 2), x => x % 2 == 0)))
     println("First index of an uppercase string is %d".format(findFirst[String](Array("Apple", "Banana", "LEMON", "peaR"), x => x.matches("[A-Z]+"))))
+
+    println(isSorted[Int](Array(1,3,5,7), (x, y) => x <= y))
+    println(isSorted[Int](Array(1,3,8,7), (x, y) => x <= y))
   }
 }
