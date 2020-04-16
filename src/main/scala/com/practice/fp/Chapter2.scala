@@ -58,6 +58,18 @@ object Chapter2 {
     go(0)
   }
 
+  def partial1[A, B, C](a: A, f: (A, B) => C): B => C = {
+    (b: B) => f(a, b)
+  }
+
+  def curry[A, B, C](f: (A, B) => C): A => (B => C) = {
+    (a: A) => (b: B) => f(a,b)
+  }
+
+  def uncurry[A, B, C](f: A => B => C): (A, B) => C = {
+    (a, b) => f(a)(b)
+  }
+
   def main(args: Array[String]): Unit = {
     println(formatResult("factorial", 5, factorial))
     println(formatResult("fibonacci", 5, fibo))
