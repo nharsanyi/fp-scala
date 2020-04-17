@@ -59,4 +59,14 @@ class ListTest extends FunSuite {
     assert(List.tail(oneElementList) == List())
   }
 
+  test("test setHead") {
+    val list = List(1, 2, 3)
+    assert(List.setHead(5, list) == List(5, 2, 3))
+
+    val emptyList = List()
+    assertThrows[IllegalArgumentException](List.setHead(2, emptyList))
+
+    val oneElementList = List(5)
+    assert(List.setHead(2, oneElementList) == List(2))
+  }
 }

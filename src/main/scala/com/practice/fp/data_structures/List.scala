@@ -31,4 +31,9 @@ object List {
     case Cons(_, t) => t
   }
 
+  def setHead[A](newHead: A, list: List[A]) = list match {
+    case Nil => throw new IllegalArgumentException("Set head on empty list is not allowed")
+    case Cons(_, t) => Cons(newHead, t)
+  }
+
 }
