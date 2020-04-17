@@ -18,10 +18,12 @@ class ListTest extends FunSuite {
     val l = Cons(1, Cons(2, Cons(3, Cons(2, Nil))))
     val emptyList = Nil
     val oneElementList = Cons(2, Nil)
+    val containsZero = Cons(2, Cons(0, Cons(3, Nil)))
 
     assert(List.product(l) == 12)
     assert(List.product(emptyList) == 1)
     assert(List.product(oneElementList) == 2)
+    assert(List.product(containsZero) == 0)
   }
 
   test("assert apply") {

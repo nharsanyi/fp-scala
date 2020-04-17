@@ -11,6 +11,7 @@ object List {
 
   def product(list: List[Int]): Int = list match {
     case Nil => 1
+    case Cons(0, _) => 0
     case Cons(h, t) => h * product(t)
   }
 
