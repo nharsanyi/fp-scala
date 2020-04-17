@@ -24,4 +24,15 @@ class ListTest extends FunSuite {
     assert(List.product(oneElementList) == 2)
   }
 
+  test("assert apply") {
+    val l = List("a", "b", "c")
+    assert(l.toString == "a, b, c, Nil")
+
+    val emptyList = List()
+    assert(emptyList.toString == "Nil")
+
+    val oneElementList = List(1.3d)
+    assert(oneElementList.toString == "1.3, Nil")
+  }
+
 }
