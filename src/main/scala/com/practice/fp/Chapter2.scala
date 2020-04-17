@@ -70,6 +70,10 @@ object Chapter2 {
     (a, b) => f(a)(b)
   }
 
+  def compose[A, B, C](f: B => C, g: A => B): A => C = {
+    (a: A) => f(g(a))
+  }
+
   def main(args: Array[String]): Unit = {
     println(formatResult("factorial", 5, factorial))
     println(formatResult("fibonacci", 5, fibo))

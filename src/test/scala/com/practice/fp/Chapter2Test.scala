@@ -42,4 +42,11 @@ class Chapter2Test extends FunSuite {
     assert(uncurry(g)(1, 1) == f(1, 1))
   }
 
+  test("assert compose") {
+    def f(b: Int): String = "_%d_".format(b)
+    def g(d: Double): Int = d.toInt
+
+    assert(compose(f, g)(1.8d) == "_1_")
+  }
+
 }
