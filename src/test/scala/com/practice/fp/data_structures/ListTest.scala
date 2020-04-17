@@ -48,4 +48,15 @@ class ListTest extends FunSuite {
     assert(x == 3)
   }
 
+  test("test tail") {
+    val list = List(1, 2, 3)
+    assert(List.tail(list) == List(2, 3))
+
+    val emptyList = List()
+    assert(List.tail(emptyList) == List())
+
+    val oneElementList = List(5)
+    assert(List.tail(oneElementList) == List())
+  }
+
 }
