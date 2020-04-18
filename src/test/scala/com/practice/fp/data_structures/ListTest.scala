@@ -73,5 +73,17 @@ class ListTest extends FunSuite {
   test("should drop") {
     val list = List(1, 2, 3)
     assert(List.drop(list, 2) == List(3))
+
+    val emptyList = List()
+    assert(List.drop(emptyList, 3) == List())
+
+    val list2 = List(1, 2, 3, 4)
+    assertResult(List())(List.drop(list2, 4))
+
+    val list3 = List(1, 2, 3, 4)
+    assertResult(List())(List.drop(list3, 6))
+
+    val list4 = List(1, 2)
+    assertThrows[IllegalArgumentException](List.drop(list4, -2))
   }
 }

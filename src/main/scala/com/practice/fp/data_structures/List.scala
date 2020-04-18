@@ -9,8 +9,17 @@ case class Cons[+A](head: A, tail: List[A]) extends List[A] {
 
 object List {
 
+  /**
+    * Drops the first n element
+    * @param list
+    * @param n the number of elements to remove from the head
+    * @return
+    *         list without the first n element
+    *         if n is negative, throws Exception
+    */
   def drop(list: List[Int], n: Int): List[Int] = {
-    if (n == 0) list
+    if (n < 0) throw new IllegalArgumentException("Invalid parameter: n should be positive")
+    else if (n == 0) list
     else {
       list match {
         case Cons(_, t) => drop(t, n - 1)
