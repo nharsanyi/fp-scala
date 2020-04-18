@@ -110,4 +110,10 @@ class ListTest extends FunSuite {
     assertResult(List(1, 2, 3))(List.append(List(), List(1, 2, 3)))
     assertResult(List())(List.append(List(), List()))
   }
+
+  test("should init") {
+    assertResult(List(1, 2))(List.init(List(1, 2, 3)))
+    assertResult(List())(List.init(List(1)))
+    assertResult(List())(List.init(List()))
+  }
 }

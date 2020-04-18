@@ -80,4 +80,10 @@ object List {
     case Cons(h, t) => Cons(h, append(t, a2))
   }
 
+  def init[A](list: List[A]): List[A] = list match {
+    case Nil => Nil
+    case Cons(_, Nil) => Nil // last element
+    case Cons(h, t) => Cons(h, init(t))
+  }
+
 }
