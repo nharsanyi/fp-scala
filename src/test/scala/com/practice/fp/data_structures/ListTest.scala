@@ -86,4 +86,22 @@ class ListTest extends FunSuite {
     val list4 = List(1, 2)
     assertThrows[IllegalArgumentException](List.drop(list4, -2))
   }
+
+  test("should dropwWhile") {
+    val list = List(-1, -3, 5, -2)
+    assertResult(List(5, -2))(List.dropwWhile(list, (x: Int) => x < 0))
+
+    val emptyList = List[String]()
+    assertResult(List())(List.dropwWhile(emptyList, (x: String) => x.startsWith("X")))
+
+    val list2 = List(3, 5, 6)
+    assertResult(List(3, 5, 6))(List.dropwWhile(list2, (x: Int) => x < 0))
+
+    val list3 = List(-3)
+    assertResult(List())(List.dropwWhile(list3, (x: Int) => x < 0))
+
+    val list4 = List(3)
+    assertResult(List(3))(List.dropwWhile(list4, (x: Int) => x < 0))
+
+  }
 }
