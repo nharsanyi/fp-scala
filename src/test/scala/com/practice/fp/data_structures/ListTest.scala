@@ -69,4 +69,9 @@ class ListTest extends FunSuite {
     val oneElementList = List(5)
     assert(List.setHead(2, oneElementList) == List(2))
   }
+
+  test("should drop") {
+    val list = List(1, 2, 3)
+    assert(List.drop(list, 2) == List(3))
+  }
 }

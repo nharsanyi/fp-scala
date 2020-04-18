@@ -9,6 +9,17 @@ case class Cons[+A](head: A, tail: List[A]) extends List[A] {
 
 object List {
 
+  def drop(list: List[Int], n: Int): List[Int] = {
+    if (n == 0) list
+    else {
+      list match {
+        case Cons(_, t) => drop(t, n - 1)
+        case Nil => Nil
+      }
+    }
+  }
+
+
   def product(list: List[Int]): Int = list match {
     case Nil => 1
     case Cons(0, _) => 0
