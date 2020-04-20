@@ -142,6 +142,11 @@ class ListTest extends FunSuite {
     assertResult(0)(List.lengthWithFoldLeft(List()))
     assertResult(1)(List.lengthWithFoldRight(List(1)))
     assertResult(1)(List.lengthWithFoldLeft(List(1)))
+  }
 
+  test("assert reverse") {
+    assertResult(List(3, 2, 1))(List.reverse(List(1, 2, 3)))
+    assertResult(List())(List.reverse(List()))
+    assertResult(List(1))(List.reverse(List(1)))
   }
 }
