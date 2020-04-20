@@ -99,4 +99,7 @@ object List {
   def sumWithFoldLeft(list: List[Int]): Int = foldLeft(list, 0)(_ + _)
   def productWithFoldLeft(list: List[Double]): Double = foldLeft(list, 1.0)(_ * _)
 
+  def lengthWithFoldRight[A](list: List[A]): Int = foldRight(list, 0)((_, l) => l + 1)
+  def lengthWithFoldLeft[A](list: List[A]): Int = foldLeft(list, 0)((l, _) => l + 1)
+
 }

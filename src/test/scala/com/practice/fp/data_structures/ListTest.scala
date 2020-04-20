@@ -134,4 +134,14 @@ class ListTest extends FunSuite {
     assertResult(0)(List.productWithFoldLeft(List(1, 2, 0)))
     assertResult(1)(List.productWithFoldLeft(List(1)))
   }
+
+  test("assert length") {
+    assertResult(3)(List.lengthWithFoldRight(List(1, 2, 3)))
+    assertResult(3)(List.lengthWithFoldLeft(List(1, 2, 3)))
+    assertResult(0)(List.lengthWithFoldRight(List()))
+    assertResult(0)(List.lengthWithFoldLeft(List()))
+    assertResult(1)(List.lengthWithFoldRight(List(1)))
+    assertResult(1)(List.lengthWithFoldLeft(List(1)))
+
+  }
 }
