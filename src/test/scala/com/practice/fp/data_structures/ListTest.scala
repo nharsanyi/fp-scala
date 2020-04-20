@@ -116,4 +116,22 @@ class ListTest extends FunSuite {
     assertResult(List())(List.init(List(1)))
     assertResult(List())(List.init(List()))
   }
+
+  test("assert foldRight") {
+    assertResult(5)(List.foldRight(List(2, 3), 0)(_ + _))
+    assertResult(5)(List.foldRight(List(1, 5), 1.0)(_ * _))
+    assertResult(List(1, 2, 3))(List.foldRight(List(1, 2, 3), Nil: List[Int])(Cons(_ , _)))
+  }
+
+  test("assert sumWithFoldLeft") {
+    assertResult(5)(List.sumWithFoldLeft(List(1, 2, 2)))
+    assertResult(0)(List.sumWithFoldLeft(List()))
+    assertResult(3)(List.sumWithFoldLeft(List(3)))
+  }
+
+  test("assert productWithFoldLeft") {
+    assertResult(6)(List.productWithFoldLeft(List(1, 2, 3)))
+    assertResult(0)(List.productWithFoldLeft(List(1, 2, 0)))
+    assertResult(1)(List.productWithFoldLeft(List(1)))
+  }
 }
