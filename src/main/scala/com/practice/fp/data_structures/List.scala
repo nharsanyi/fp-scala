@@ -103,5 +103,5 @@ object List {
   def reverse[A](list: List[A]): List[A] = foldLeft(list, List[A]())((rev, curr) => Cons(curr, rev))
 
 //  def appendWithFold[A](a1: List[A], a2: List[A]): List[A] = reverse(List.foldLeft(a2, reverse(a1))((res, curr) => Cons(curr, res)))
-  def appendWithFold[A](a1: List[A], a2: List[A]): List[A] = List.foldRight(a1, a2)((res, curr) => Cons(res, curr))
+  def appendWithFold[A](a1: List[A], a2: List[A]): List[A] = List.foldRight(a1, a2)(Cons(_, _))
 }
