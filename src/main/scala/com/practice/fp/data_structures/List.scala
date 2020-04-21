@@ -104,4 +104,7 @@ object List {
 
 //  def appendWithFold[A](a1: List[A], a2: List[A]): List[A] = reverse(List.foldLeft(a2, reverse(a1))((res, curr) => Cons(curr, res)))
   def appendWithFold[A](a1: List[A], a2: List[A]): List[A] = List.foldRight(a1, a2)(Cons(_, _))
+
+  def concat[A](list: List[List[A]]): List[A] = List.foldRight(list, List[A]())(appendWithFold(_, _))
+
 }

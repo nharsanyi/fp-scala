@@ -150,10 +150,18 @@ class ListTest extends FunSuite {
     assertResult(List(1))(List.reverse(List(1)))
   }
 
-  test("should appendWithFold") {
+  test("assert appendWithFold") {
     assertResult(List(1, 2, 3, 4, 5))(List.appendWithFold(List(1, 2, 3), List(4, 5)))
     assertResult(List(1, 2, 3))(List.appendWithFold(List(), List(1, 2, 3)))
     assertResult(List(1, 2, 3))(List.appendWithFold(List(1, 2, 3), List()))
     assertResult(List())(List.appendWithFold(List(), List()))
+  }
+
+  test("assert concat") {
+    assertResult(List(1, 2, 3, 4, 5))(List.concat(List(List(1, 2), List(3), List(4, 5))))
+    assertResult(List(1, 2, 3, 4, 5))(List.concat(List(List(), List(1, 2, 3, 4, 5))))
+    assertResult(List())(List.concat(List(List(), List())))
+    assertResult(List(1))(List.concat(List(List(), List(1))))
+    assertResult(List(1))(List.concat(List(List(1), List())))
   }
 }
