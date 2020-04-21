@@ -1,9 +1,7 @@
 package com.practice.fp.data_structures
 
 sealed trait List[+A]
-
 case object Nil extends List[Nothing]
-
 case class Cons[+A](head: A, tail: List[A]) extends List[A] {
   override def toString: String = head + ", " + tail
 }
@@ -104,4 +102,6 @@ object List {
 
   def reverse[A](list: List[A]): List[A] = foldLeft(list, List[A]())((rev, curr) => Cons(curr, rev))
 
+//  def appendWithFold[A](a1: List[A], a2: List[A]): List[A] = reverse(List.foldLeft(a2, reverse(a1))((res, curr) => Cons(curr, res)))
+  def appendWithFold[A](a1: List[A], a2: List[A]): List[A] = List.foldRight(a1, a2)((res, curr) => Cons(res, curr))
 }
