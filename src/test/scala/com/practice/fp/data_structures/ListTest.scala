@@ -180,4 +180,10 @@ class ListTest extends FunSuite {
     val f: Int => Int = (x: Int) => x * 2
     assertResult(List(2, 4, 6))(List.map(List(1, 2, 3))(f))
   }
+
+  test("assert filter") {
+    assertResult(List(2, 4))(List.filter(List(1, 2, 3, 4, 5))((x: Int) => x % 2 == 0))
+    assertResult(List())(List.filter(List(1, 3, 5))((x: Int) => x % 2 == 0))
+    assertResult(List(2))(List.filter(List(1, 2, 3, 5))((x: Int) => x % 2 == 0))
+  }
 }

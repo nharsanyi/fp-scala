@@ -121,4 +121,15 @@ object List {
     case Nil => List[B]()
     case Cons(h, t) => Cons(f(h), map(t)(f))
   }
+
+  def filter[A](list: List[A])(f: A => Boolean): List[A] = list match {
+    case Nil => List[A]()
+    case Cons(h, t) => {
+      if (f(h)) {
+        Cons(h, filter(t)(f))
+      } else {
+        filter(t)(f)
+      }
+    }
+  }
 }
