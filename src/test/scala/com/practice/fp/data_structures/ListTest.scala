@@ -175,4 +175,9 @@ class ListTest extends FunSuite {
     assertResult(List("1.0"))(List.convertToString(List(1)))
     assertResult(List())(List.convertToString(List()))
   }
+
+  test("assert map") {
+    val f: Int => Int = (x: Int) => x * 2
+    assertResult(List(2, 4, 6))(List.map(List(1, 2, 3))(f))
+  }
 }

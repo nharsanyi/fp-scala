@@ -116,4 +116,9 @@ object List {
     case Nil => List[String]()
     case Cons(h, t) => Cons(h.toString, convertToString(t))
   }
+
+  def map[A,B](as: List[A])(f: A => B): List[B] = as match {
+    case Nil => List[B]()
+    case Cons(h, t) => Cons(f(h), map(t)(f))
+  }
 }
