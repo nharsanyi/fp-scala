@@ -164,4 +164,8 @@ class ListTest extends FunSuite {
     assertResult(List(1))(List.concat(List(List(), List(1))))
     assertResult(List(1))(List.concat(List(List(1), List())))
   }
+
+  test("assert incrementElements") {
+    assertResult(List(2, 3, 4, 5))(List.incrementElements(List(1, 2, 3, 4), 1))
+  }
 }

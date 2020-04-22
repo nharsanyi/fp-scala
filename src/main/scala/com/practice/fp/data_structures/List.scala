@@ -107,4 +107,8 @@ object List {
 
   def concat[A](list: List[List[A]]): List[A] = List.foldRight(list, List[A]())(appendWithFold(_, _))
 
+  def incrementElements(list: List[Int], incBy: Int): List[Int] = list match {
+    case Nil => list
+    case Cons(h, t) => Cons(h + incBy, incrementElements(t, incBy))
+  }
 }
