@@ -111,4 +111,9 @@ object List {
     case Nil => list
     case Cons(h, t) => Cons(h + incBy, incrementElements(t, incBy))
   }
+
+  def convertToString(list: List[Double]): List[String] = list match {
+    case Nil => List[String]()
+    case Cons(h, t) => Cons(h.toString, convertToString(t))
+  }
 }

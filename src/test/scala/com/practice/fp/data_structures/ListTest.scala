@@ -167,5 +167,12 @@ class ListTest extends FunSuite {
 
   test("assert incrementElements") {
     assertResult(List(2, 3, 4, 5))(List.incrementElements(List(1, 2, 3, 4), 1))
+    assertResult(List(3))(List.incrementElements(List(2), 1))
+  }
+
+  test("assert convertToString") {
+    assertResult(List("1.0", "2.0", "3.0"))(List.convertToString(List(1, 2, 3)))
+    assertResult(List("1.0"))(List.convertToString(List(1)))
+    assertResult(List())(List.convertToString(List()))
   }
 }
