@@ -201,8 +201,16 @@ class ListTest extends FunSuite {
 
   test("assert addPairWise") {
     assertResult(List(5, 7, 9))(List.addPairWise(List(1, 2, 3), List(4, 5, 6)))
-    assertResult(List(4, 5, 6))(List.addPairWise(List(), List(4, 5, 6)))
-    assertResult(List(4, 5, 6))(List.addPairWise(List(4, 5, 6), List()))
+    assertResult(List())(List.addPairWise(List(), List(4, 5, 6)))
+    assertResult(List())(List.addPairWise(List(4, 5, 6), List()))
     assertResult(List())(List.addPairWise(List(), List()))
+  }
+
+  test("assert zipWith") {
+    assertResult(List(4, 10, 18))(List.zipWith(List(1, 2, 3), List(4, 5, 6))(_ * _))
+    assertResult(List())(List.zipWith(List[Int](), List(4, 5, 6))(_ * _))
+    assertResult(List())(List.zipWith(List(4, 5, 6), List[Int]())(_ * _))
+    assertResult(List("1_4", "2_5", "3_6"))(List.zipWith(List(1, 2, 3), List(4, 5, 6))((x, y) => x + "_" + y))
+    assertResult(List("1_a", "2_b", "3_c"))(List.zipWith(List(1, 2, 3), List("a", "b", "c"))((x, y) => x + "_" + y))
   }
 }
