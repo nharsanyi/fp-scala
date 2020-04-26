@@ -198,4 +198,11 @@ class ListTest extends FunSuite {
     assertResult(List())(List.filterWithFlatMap(List(2, 4))(x => x % 2 == 1))
     assertResult(List())(List.filterWithFlatMap(List[Int]())(x => x % 2 == 1))
   }
+
+  test("assert addPairWise") {
+    assertResult(List(5, 7, 9))(List.addPairWise(List(1, 2, 3), List(4, 5, 6)))
+    assertResult(List(4, 5, 6))(List.addPairWise(List(), List(4, 5, 6)))
+    assertResult(List(4, 5, 6))(List.addPairWise(List(4, 5, 6), List()))
+    assertResult(List())(List.addPairWise(List(), List()))
+  }
 }

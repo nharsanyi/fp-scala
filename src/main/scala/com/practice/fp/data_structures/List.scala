@@ -140,4 +140,14 @@ object List {
   def filterWithFlatMap[A](list: List[A])(f: A => Boolean): List[A] = {
     flatMap(list)(x => if (f(x)) List(x) else List())
   }
+
+  def addPairWise(list1: List[Int], list2: List[Int]): List[Int] = {
+    (list1, list2) match {
+      case (Nil, list2) => list2
+      case (list1, Nil) => list1
+      case (Cons(h1, t1), Cons(h2, t2)) => {
+        Cons(h1 + h2, addPairWise(t1, t2))
+      }
+    }
+  }
 }
