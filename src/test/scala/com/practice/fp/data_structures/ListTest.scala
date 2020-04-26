@@ -213,4 +213,13 @@ class ListTest extends FunSuite {
     assertResult(List("1_4", "2_5", "3_6"))(List.zipWith(List(1, 2, 3), List(4, 5, 6))((x, y) => x + "_" + y))
     assertResult(List("1_a", "2_b", "3_c"))(List.zipWith(List(1, 2, 3), List("a", "b", "c"))((x, y) => x + "_" + y))
   }
+
+  test("assert hasSubsequence") {
+    assert(List.hasSubsequence(List(1, 2, 3, 4), List(1, 2)))
+    assert(List.hasSubsequence(List(1, 2, 3, 4), List(2)))
+    assert(List.hasSubsequence(List(1, 2, 3, 4), List(2, 3)))
+    assert(List.hasSubsequence(List(1, 2, 3, 4), List(2, 3, 4)))
+    assert(!List.hasSubsequence(List(1, 2, 3, 4), List(5, 6)))
+
+  }
 }
