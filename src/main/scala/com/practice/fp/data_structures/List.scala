@@ -136,4 +136,8 @@ object List {
   def flatMap[A, B](as: List[A])(f: A => List[B]): List[B] = {
     concat(map(as)(f))
   }
+
+  def filterWithFlatMap[A](list: List[A])(f: A => Boolean): List[A] = {
+    flatMap(list)(x => if (f(x)) List(x) else List())
+  }
 }
