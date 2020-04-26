@@ -186,4 +186,10 @@ class ListTest extends FunSuite {
     assertResult(List())(List.filter(List(1, 3, 5))((x: Int) => x % 2 == 0))
     assertResult(List(2))(List.filter(List(1, 2, 3, 5))((x: Int) => x % 2 == 0))
   }
+
+  test("assert flatMap") {
+    assertResult(List(1, 1, 2, 2, 3, 3))(List.flatMap(List(1, 2, 3))(x => List(x, x)))
+    assertResult(List(2, 4, 6))(List.flatMap(List(1, 2, 3))(x => List(x * 2)))
+    assertResult(List[Int]())(List.flatMap(List[Int]())(x => List(x * 2)))
+  }
 }
