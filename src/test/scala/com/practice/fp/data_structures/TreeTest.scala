@@ -37,4 +37,15 @@ class TreeTest extends FunSuite {
     assertResult(0)(Tree.depth(tree3))
   }
 
+
+  test("should map tree to another tree") {
+    val tree1 = new Branch[Int](new Leaf[Int](5), new Branch[Int](new Leaf[Int](3), new Leaf[Int](4)))
+    assertResult(new Branch[Int](new Leaf[Int](10), new Branch[Int](new Leaf[Int](6), new Leaf[Int](8))))(Tree.map(tree1)(_ * 2))
+
+    val tree2 = new Branch[Int](new Leaf[Int](1), new Leaf[Int](2))
+    assertResult(new Branch[Int](new Leaf[Int](2), new Leaf[Int](3)))(Tree.map(tree2)(_ + 1))
+
+    val tree3 = new Leaf[Int](3)
+    assertResult(new Leaf[String]("3_a"))(Tree.map(tree3)(x => x + "_a"))
+  }
 }
