@@ -26,4 +26,15 @@ class TreeTest extends FunSuite {
     assertResult(3)(Tree.max(tree3))
   }
 
+  test("should return the maximum path from the root the any leaf") {
+    val tree1 = new Branch[Int](new Leaf[Int](5), new Branch[Int](new Leaf[Int](3), new Leaf[Int](4)))
+    assertResult(2)(Tree.depth(tree1))
+
+    val tree2 = new Branch[Int](new Leaf[Int](1), new Leaf[Int](2))
+    assertResult(1)(Tree.depth(tree2))
+
+    val tree3 = new Leaf[Int](3)
+    assertResult(0)(Tree.depth(tree3))
+  }
+
 }
