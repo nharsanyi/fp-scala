@@ -38,4 +38,11 @@ object Tree {
       case Branch(l, r) => new Branch[B](map(l)(f), map(r)(f))
     }
   }
+
+  def fold[A, B](tree: Tree[A])(f: A => B)(g: (B, B) => B): B = {
+    tree match {
+      case Leaf(v) => f(v)
+      case Branch(l, r) => g(fold(l)(f)(g), fold(r)(f)(g))
+    }
+  }
 }

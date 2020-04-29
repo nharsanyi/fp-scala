@@ -48,4 +48,17 @@ class TreeTest extends FunSuite {
     val tree3 = new Leaf[Int](3)
     assertResult(new Leaf[String]("3_a"))(Tree.map(tree3)(x => "%d_a".format(x)))
   }
+
+  test("should assert fold") {
+    val tree1 = new Branch[Int](new Leaf[Int](5), new Branch[Int](new Leaf[Int](3), new Leaf[Int](4)))
+    // max
+    assertResult(5)(Tree.fold[Int, Int](tree1)(x => x)((x, y) => x.max(y)))
+    // depth
+    assertResult(2)(Tree.fold[Int, Int](tree1)(_ => 0)((x, y) => 1 + x.max(y)))
+    // map
+    val mapF: Int => Int = (x: Int) => x * 2
+    val expectedTree: Tree[Int] = new Branch[Int](new Leaf[Int](10), new Branch[Int](new Leaf[Int](6), new Leaf[Int](8)))
+    val actualTree: Tree[Int] = Tree.fold(tree1)(x => Leaf(mapF(x)): Tree[Int])(Branch(_, _))
+    assertResult(expectedTree)(actualTree)
+  }
 }
