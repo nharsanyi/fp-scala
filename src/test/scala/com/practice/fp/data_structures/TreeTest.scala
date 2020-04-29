@@ -46,6 +46,6 @@ class TreeTest extends FunSuite {
     assertResult(new Branch[Int](new Leaf[Int](2), new Leaf[Int](3)))(Tree.map(tree2)(_ + 1))
 
     val tree3 = new Leaf[Int](3)
-    assertResult(new Leaf[String]("3_a"))(Tree.map(tree3)(x => x + "_a"))
+    assertResult(new Leaf[String]("3_a"))(Tree.map(tree3)(x => "%d_a".format(x)))
   }
 }
