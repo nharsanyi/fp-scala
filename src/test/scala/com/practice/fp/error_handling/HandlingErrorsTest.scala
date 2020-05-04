@@ -46,4 +46,16 @@ class HandlingErrorsTest extends FunSuite {
     assertResult(None)(None.filter(f))
     assertResult(None)(Some(Person("John", "Smith")).filter(f))
   }
+
+  test("should sequence") {
+    val l1: List[HandlingErrors.Option[Int]] = List(HandlingErrors.Some(1), HandlingErrors.Some(2))
+    assertResult(HandlingErrors.Some(List[Int](1, 2)))(HandlingErrors.sequence(l1))
+
+    val l2: List[HandlingErrors.Option[Int]] = List(HandlingErrors.Some(1), HandlingErrors.None, HandlingErrors.Some(2))
+    assertResult(HandlingErrors.None)(HandlingErrors.sequence(l2))
+
+    val l3: List[HandlingErrors.Option[Int]] = List(HandlingErrors.Some(1))
+    assertResult(HandlingErrors.Some(List[Int](1)))(HandlingErrors.sequence(l3))
+
+  }
 }
