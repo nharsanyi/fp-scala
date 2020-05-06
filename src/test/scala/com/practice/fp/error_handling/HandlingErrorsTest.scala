@@ -58,4 +58,17 @@ class HandlingErrorsTest extends FunSuite {
     assertResult(HandlingErrors.Some(List[Int](1)))(HandlingErrors.sequence(l3))
 
   }
+
+  test("should parse ints") {
+    val l1 = List("1", "2", "3")
+    assertResult(HandlingErrors.Some(List(1, 2, 3)))(HandlingErrors.parseInts(l1))
+
+    val l2 = List("1", "2", "a", "3")
+    assertResult(HandlingErrors.None)(HandlingErrors.parseInts(l2))
+
+    val l3 = List()
+    assertResult(HandlingErrors.Some(List()))(HandlingErrors.parseInts(l3))
+
+  }
+
 }
