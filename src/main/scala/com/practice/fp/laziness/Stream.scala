@@ -38,6 +38,13 @@ object Stream {
     }
   }
 
+  def takeWhile[A](p: A => Boolean, stream: Stream[A]): Stream[A] = {
+    stream match {
+      case Cons(h, t) if p(h()) => Stream.cons(h(), takeWhile(p, t()))
+      case _ => Stream.empty
+    }
+  }
+
   def empty[A]: Stream[A] = Empty // returns empty, but annotates as Stream[A]
   def apply[A](as: A*): Stream[A] = if (as.isEmpty) empty else cons(as.head, apply(as.tail: _*))
 

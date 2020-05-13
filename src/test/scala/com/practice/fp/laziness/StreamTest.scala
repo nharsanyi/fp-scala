@@ -14,4 +14,9 @@ class StreamTest extends FunSuite {
     assertResult(List(1))(Stream.toList(Stream.take(Stream(1, 2, 3, 4, 5), 1)))
     assertResult(List())(Stream.toList(Stream.take(Stream(1, 2, 3, 4, 5), 0)))
   }
+
+  test("should take while elements for the given predicate are true") {
+    assertResult(List(1, 2, 3))(Stream.toList(Stream.takeWhile( (x: Int) => x < 4, Stream(1, 2, 3, 4, 5))))
+    assertResult(List())(Stream.toList(Stream.takeWhile( (x: Int) => x < 2, Stream(4, 1, 2, 5))))
+  }
 }
