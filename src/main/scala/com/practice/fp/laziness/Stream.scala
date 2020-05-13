@@ -38,6 +38,13 @@ object Stream {
     }
   }
 
+  def drop[A](stream: Stream[A], n: Int): Stream[A] = {
+    stream match {
+      case Cons(_, t) if n > 0 => drop(t(), n - 1)
+      case s => s
+    }
+  }
+
   def takeWhile[A](p: A => Boolean, stream: Stream[A]): Stream[A] = {
     stream match {
       case Cons(h, t) if p(h()) => Stream.cons(h(), takeWhile(p, t()))
