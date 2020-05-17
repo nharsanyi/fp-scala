@@ -25,4 +25,9 @@ class StreamTest extends FunSuite {
     assertResult(List(2, 3, 4, 5))(Stream.toList(Stream.drop(Stream(1, 2, 3, 4, 5), 1)))
     assertResult(List(1, 2, 3, 4, 5))(Stream.toList(Stream.drop(Stream(1, 2, 3, 4, 5), 0)))
   }
+
+  test("should check all elements in the list") {
+    assert(Stream.forAll((x: Int) => x < 4, Stream(1, 2, 3)))
+    assert(!Stream.forAll((x: Int) => x % 2 == 0, Stream(1, 2, 3)))
+  }
 }

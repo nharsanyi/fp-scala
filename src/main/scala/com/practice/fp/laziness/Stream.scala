@@ -52,6 +52,20 @@ object Stream {
     }
   }
 
+  def foldRight[A, B](z: => B)(f: (A, B) => B, stream: Stream[A]): B = {
+    stream match {
+      case Cons(h, t) => f(h(), foldRight(z)(f, t()))
+      case _ => z
+    }
+  }
+
+  def forAll[A](p: A => Boolean, stream: Stream[A]): Boolean = {
+    stream match {
+      case Cons(h, t) => p(h()) && forAll(p, t())
+      case _ => true
+
+    }
+  }
 
 
   def empty[A]: Stream[A] = Empty // returns empty, but annotates as Stream[A]
