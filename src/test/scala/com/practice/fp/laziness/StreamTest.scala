@@ -30,4 +30,10 @@ class StreamTest extends FunSuite {
     assert(Stream.forAll((x: Int) => x < 4, Stream(1, 2, 3)))
     assert(!Stream.forAll((x: Int) => x % 2 == 0, Stream(1, 2, 3)))
   }
+
+  test("should take while elements for the given predicate are true (foldRight impl)") {
+    assertResult(List(1, 2, 3))(Stream.toList(Stream.takeWhileWithFold( (x: Int) => x < 4, Stream(1, 2, 3, 4, 5))))
+    assertResult(List())(Stream.toList(Stream.takeWhileWithFold( (x: Int) => x < 2, Stream(4, 1, 2, 5))))
+  }
+
 }

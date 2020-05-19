@@ -63,8 +63,11 @@ object Stream {
     stream match {
       case Cons(h, t) => p(h()) && forAll(p, t())
       case _ => true
-
     }
+  }
+
+  def takeWhileWithFold[A](p: A => Boolean, stream: Stream[A]): Stream[A] = {
+    foldRight[A, Stream[A]](empty[A])((h, t) => if (p(h)) cons(h, t) else empty[A], stream)
   }
 
 
