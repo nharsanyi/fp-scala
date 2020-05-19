@@ -41,4 +41,9 @@ class StreamTest extends FunSuite {
     assertResult(None)(Stream.headOption(Stream()))
   }
 
+  test("should map stream to another stream") {
+    assertResult(List(2, 4, 6))(Stream.toList(Stream.map((x: Int) => x * 2, Stream(1, 2, 3))))
+    assertResult(List())(Stream.toList(Stream.map((x: Int) => x * 2, Stream())))
+  }
+
 }

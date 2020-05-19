@@ -74,6 +74,10 @@ object Stream {
     foldRight[A, Option[A]](None: Option[A])((h, _) => Some(h), stream)
   }
 
+  def map[A, B](f: A => B, stream: Stream[A]): Stream[B] = {
+    foldRight[A, Stream[B]](empty[B])((h, t) => cons(f(h), t), stream)
+  }
+
   def empty[A]: Stream[A] = Empty // returns empty, but annotates as Stream[A]
   def apply[A](as: A*): Stream[A] = if (as.isEmpty) empty else cons(as.head, apply(as.tail: _*))
 
