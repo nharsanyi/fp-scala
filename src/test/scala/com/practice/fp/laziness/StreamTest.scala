@@ -46,4 +46,10 @@ class StreamTest extends FunSuite {
     assertResult(List())(Stream.toList(Stream.map((x: Int) => x * 2, Stream())))
   }
 
+  test("should filter stream") {
+    assertResult(List(2, 4))(Stream.toList(Stream.filter((x: Int) => x % 2 == 0, Stream(1, 2, 3, 4))))
+    assertResult(List())(Stream.toList(Stream.filter((x: Int) => x < 0, Stream(1, 2, 3, 4))))
+    assertResult(List())(Stream.toList(Stream.filter((x: Int) => x < 0, Stream())))
+  }
+
 }

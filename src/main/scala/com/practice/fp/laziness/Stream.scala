@@ -78,6 +78,10 @@ object Stream {
     foldRight[A, Stream[B]](empty[B])((h, t) => cons(f(h), t), stream)
   }
 
+  def filter[A](f: A => Boolean, stream: Stream[A]): Stream[A] = {
+    foldRight[A, Stream[A]](empty[A])((h, t) => if (f(h)) cons(h, t) else t, stream)
+  }
+
   def empty[A]: Stream[A] = Empty // returns empty, but annotates as Stream[A]
   def apply[A](as: A*): Stream[A] = if (as.isEmpty) empty else cons(as.head, apply(as.tail: _*))
 
