@@ -36,4 +36,9 @@ class StreamTest extends FunSuite {
     assertResult(List())(Stream.toList(Stream.takeWhileWithFold( (x: Int) => x < 2, Stream(4, 1, 2, 5))))
   }
 
+  test("should return headOption") {
+    assertResult(Some(1))(Stream.headOption(Stream(1, 2, 3)))
+    assertResult(None)(Stream.headOption(Stream()))
+  }
+
 }

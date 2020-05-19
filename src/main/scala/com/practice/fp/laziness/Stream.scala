@@ -70,6 +70,9 @@ object Stream {
     foldRight[A, Stream[A]](empty[A])((h, t) => if (p(h)) cons(h, t) else empty[A], stream)
   }
 
+  def headOption[A](stream: Stream[A]): Option[A] = {
+    foldRight[A, Option[A]](None: Option[A])((h, _) => Some(h), stream)
+  }
 
   def empty[A]: Stream[A] = Empty // returns empty, but annotates as Stream[A]
   def apply[A](as: A*): Stream[A] = if (as.isEmpty) empty else cons(as.head, apply(as.tail: _*))
