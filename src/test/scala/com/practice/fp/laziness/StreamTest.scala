@@ -52,4 +52,8 @@ class StreamTest extends FunSuite {
     assertResult(List())(Stream.toList(Stream.filter((x: Int) => x < 0, Stream())))
   }
 
+  test("should create constant stream") {
+    assertResult(List(2, 2, 2, 2))(Stream.toList(Stream.take(Stream.constant(2), 4)))
+  }
+
 }

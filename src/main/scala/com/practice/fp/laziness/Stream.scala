@@ -82,6 +82,11 @@ object Stream {
     foldRight[A, Stream[A]](empty[A])((h, t) => if (f(h)) cons(h, t) else t, stream)
   }
 
+  def constant[A](a: A): Stream[A] = {
+    lazy val tail: Stream[A] = Cons(() => a, () => tail)
+    tail
+  }
+
   def empty[A]: Stream[A] = Empty // returns empty, but annotates as Stream[A]
   def apply[A](as: A*): Stream[A] = if (as.isEmpty) empty else cons(as.head, apply(as.tail: _*))
 
