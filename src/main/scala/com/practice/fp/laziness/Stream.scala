@@ -87,6 +87,10 @@ object Stream {
     tail
   }
 
+  def from(n: Int): Stream[Int] = {
+    cons(n, from(n + 1))
+  }
+
   def empty[A]: Stream[A] = Empty // returns empty, but annotates as Stream[A]
   def apply[A](as: A*): Stream[A] = if (as.isEmpty) empty else cons(as.head, apply(as.tail: _*))
 

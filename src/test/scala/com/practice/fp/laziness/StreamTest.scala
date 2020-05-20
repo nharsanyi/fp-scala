@@ -56,4 +56,8 @@ class StreamTest extends FunSuite {
     assertResult(List(2, 2, 2, 2))(Stream.toList(Stream.take(Stream.constant(2), 4)))
   }
 
+  test("should create stream from N") {
+    assertResult(List(51, 52, 53))(Stream.toList(Stream.take(Stream.from(51), 3)))
+  }
+
 }
