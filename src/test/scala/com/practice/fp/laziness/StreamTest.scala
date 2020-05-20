@@ -60,4 +60,20 @@ class StreamTest extends FunSuite {
     assertResult(List(51, 52, 53))(Stream.toList(Stream.take(Stream.from(51), 3)))
   }
 
+  test("should generate fibonacci stream") {
+    assertResult(List(0, 1, 1, 2, 3, 5, 8))(Stream.toList(Stream.take(Stream.fibs(), 7)))
+  }
+
+  test("should generate fibonacci stream with unfold") {
+    assertResult(List(0, 1, 1, 2, 3, 5, 8))(Stream.toList(Stream.take(Stream.fibsWithUnfold(), 7)))
+  }
+
+  test("should create stream from N with unfold") {
+    assertResult(List(51, 52, 53))(Stream.toList(Stream.take(Stream.fromWithUnfold(51), 3)))
+  }
+
+  test("should create constant stream with unfold") {
+    assertResult(List(2, 2, 2, 2))(Stream.toList(Stream.take(Stream.constantWithUnfold(2), 4)))
+  }
+
 }

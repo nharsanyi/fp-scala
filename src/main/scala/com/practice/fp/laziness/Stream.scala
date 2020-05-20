@@ -87,8 +87,41 @@ object Stream {
     tail
   }
 
+  def fibs(): Stream[Int] = {
+
+    def go(f0: Int, f1: Int): Stream[Int] = {
+      cons(f0, go(f1, f0 + f1))
+    }
+    go(0, 1)
+  }
+
   def from(n: Int): Stream[Int] = {
     cons(n, from(n + 1))
+  }
+
+  /**
+    *
+    * @param z: Initial state
+    * @param f: function to produce the next state and the next value
+    * @tparam A
+    * @tparam S
+    * @return
+    */
+  def unfold[A, S](z: S)(f: S => Option[(A, S)]): Stream[A] = f(z) match {
+    case Some((h, s)) => cons(h, unfold(s)(f))
+    case None => empty
+  }
+
+  def fibsWithUnfold() = {
+    unfold((0, 1)) { case (f0, f1) => Some((f0, (f1, f0 + f1)))}
+  }
+
+  def fromWithUnfold(n: Int) = {
+    unfold(n) { case a => Some((a, a + 1)) }
+  }
+
+  def constantWithUnfold(n: Int) = {
+    unfold(n) {case a => Some((a, a))}
   }
 
   def empty[A]: Stream[A] = Empty // returns empty, but annotates as Stream[A]
